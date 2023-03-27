@@ -1,0 +1,29 @@
+.heading
+{
+    font-size: 40px;
+    width: 100%;
+    margin: 0px;
+}
+
+.note
+{
+    font-size: 30px;
+    color: black;
+}
+
+body
+{
+    background-size: cover;
+}
+
+.playButton
+{
+    width: 200px;
+    font-size: 25px;
+}
+
+.diva
+{
+    background-color: green;
+    width: 75%;
+}
