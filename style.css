@@ -27,3 +27,9 @@ body
     background-color: green;
     width: 75%;
 }
+
+canvas
+{
+    border: 5px solid white;
+    border-radius: 20px;
+}
