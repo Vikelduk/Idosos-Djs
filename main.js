@@ -4,13 +4,14 @@ var song2 = "";
 var tocando1 = false;
 var tocando2 = false;
 
-var rightWristyX = 0;
-var rightWristyY = 0;
+var rightWristX = 0;
+var rightWristY = 0;
 
-var leftWristyX = 0;
-var leftWristyY = 0;
+var leftWristX = 0;
+var leftWristY = 0;
 
 var scoreLeftWrist = 0;
+var scoreRightWrist = 0;
 
 var inNumberLeftWristY = 0;
 
@@ -23,7 +24,7 @@ function preload()
 function setup()
 {
     canvas = createCanvas(600, 500);
-    canvas.position(375, 190);
+    canvas.position(375, 120);
 
     video = createCapture(VIDEO);
     video.hide();
@@ -42,16 +43,17 @@ function gotPoses(results)
     if(results.length > 0)
     {
         console.log(results);
+        scoreRightWrist = results[0].pose.keypoints[10].score;
         scoreLeftWrist = results[0].pose.keypoints[9].score;
         console.log("ScoreLeftWrist = " + scoreLeftWrist);       
         
-        leftWristyX = results[0].pose.leftWrist.x;
-        leftWristyY = results[0].pose.leftWrist.y;
-        console.log("LeftWridtX = " + leftWristyX + "LeftWristY = " + leftWristyY);
+        leftWristX = results[0].pose.leftWrist.x;
+        leftWristY = results[0].pose.leftWrist.y;
+        console.log("LeftWridtX = " + leftWristX + "LeftWristY = " + leftWristY);
 
-        rightWristyX = results[0].pose.rightWrist.x;
-        rightWristyX = results[0].pose.rightWrist.y;
-        console.log("RightWridtX = " + rightWristyX + "RightWristY = " + rightWristyY);
+        rightWristX = results[0].pose.rightWrist.x;
+        rightWristX = results[0].pose.rightWrist.y;
+        console.log("RightWridtX = " + rightWristX + "RightWristY = " + rightWristY);
     }
 }
 
@@ -64,41 +66,36 @@ function draw()
 
     if (scoreLeftWrist > 0.2)
     {
-        circle(leftWristyX, leftWristyY, 20);
+        circle(leftWristX, leftWristY, 20);
 
-        if (song1 == false)
+        if ((leftWristX == 200) && (leftWristY == 200)) 
         {
-            song1.play();
+            if (song1 == false)
+            {
+                song1.play();
+                song2.stop();
 
-            tocando1 = true;
+                tocando1 = true;
+                tocando2 = false;
+            }
         }
 
     }
-}
 
-function play()
-{
-    if ((tocando2 == false) && (tocando1 == false))
+    if(scoreRightWrist > 0.2)
     {
-        song2.play();
-        tocando2 = true
+        circle(rightWristyX, rightWristyY, 20);
 
-        document.getElementById("bt").className = "btn btn-danger playButton";
-        document.getElementById("bt").innerHTML = "Parar Música"
+        if ((rightWristX == 200) && (rightWristY == 200))
+        {
+            if (song2 == false)
+            {
+                 song1.stop();
+                song2.play();
+
+                tocando1 = false;
+                tocando2 = true;
+            }
+        }
     }
-    else
-    {
-        song2.stop();
-        song1.stop();
-        
-        tocando1 = false;
-        tocando2 = false;
-
-        document.getElementById("bt").className = "btn btn-info playButton";
-        document.getElementById("bt").innerHTML = "Tocar Música"
-    }
-    
-    song.setVolume(0.5);
-    song.rate(1);
-
 }
