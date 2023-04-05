@@ -78,7 +78,7 @@ function draw()
 
 function play()
 {
-    if ((tocando2 == false) && (tocando1 = false))
+    if ((tocando2 == false) && (tocando1 == false))
     {
         song2.play();
         tocando2 = true
