@@ -52,7 +52,7 @@ function gotPoses(results)
         console.log("LeftWridtX = " + leftWristX + "LeftWristY = " + leftWristY);
 
         rightWristX = results[0].pose.rightWrist.x;
-        rightWristX = results[0].pose.rightWrist.y;
+        rightWristY = results[0].pose.rightWrist.y;
         console.log("RightWridtX = " + rightWristX + "RightWristY = " + rightWristY);
     }
 }
@@ -84,7 +84,7 @@ function draw()
 
     if(scoreRightWrist > 0.2)
     {
-        circle(rightWristyX, rightWristyY, 20);
+        circle (rightWristX, rightWristyY, 20);
 
         if ((rightWristX == 200) && (rightWristY == 200))
         {
