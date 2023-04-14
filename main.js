@@ -84,13 +84,13 @@ function draw()
 
     if(scoreRightWrist > 0.2)
     {
-        circle (rightWristX, rightWristyY, 20);
+        circle (rightWristX, rightWristY, 20);
 
         if ((rightWristX == 200) && (rightWristY == 200))
         {
             if (song2 == false)
             {
-                 song1.stop();
+                song1.stop();
                 song2.play();
 
                 tocando1 = false;
